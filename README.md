@@ -23,37 +23,37 @@
 
 在运行一键脚本之前，请确保您的服务器已安装 `git` 和 `docker`。
 
-# 更新软件包列表
+### 更新软件包列表
 ```bash
 sudo apt update
 ```
-# 安装 git
+### 安装 git
 ```bash
 sudo apt install -y git
 ```
-# 安装 docker
-# (如果已安装请跳过)
+### 安装 docker
+### (如果已安装请跳过)
 ```bash
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
-## 🌐 可选：安装 Caddy (如果需要使用域名)
+### 🌐 可选：安装 Caddy (如果需要使用域名)
 如果您希望通过域名并自动启用 HTTPS 访问您的 MFA 网页（这是推荐的方式），您需要安装 Caddy Web 服务器。
 如果您选择稍后使用 IP 地址访问，则可以跳过此步骤。
-# 1. 安装 Caddy 所需的依赖
+### 1. 安装 Caddy 所需的依赖
 ```bash
 sudo apt update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
 ```
-# 2. 导入 Caddy 的 GPG 密钥以验证软件包
+### 2. 导入 Caddy 的 GPG 密钥以验证软件包
 ```bash
 curl -1sLf '[https://dl.cloudsmith.io/public/caddy/stable/gpg.key](https://dl.cloudsmith.io/public/caddy/stable/gpg.key)' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
 ```
-# 3. 添加 Caddy 的官方软件源
+### 3. 添加 Caddy 的官方软件源
 ```bash
 curl -1sLf '[https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt](https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt)' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
 ```
-# 4. 更新软件包列表并安装 Caddy
+### 4. 更新软件包列表并安装 Caddy
 ```bash
 sudo apt update && sudo apt install caddy
 ```
