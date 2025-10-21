@@ -62,7 +62,7 @@ sudo apt update && sudo apt install caddy
 现在，您可以运行一键脚本来完成 MFA 网页的部署了。
 
 ```bash
-wget -O install.sh https://raw.githubusercontent.com/SIJULY/sijuly-mfa/main/install.sh && chmod +x install.sh && sudo bash install.sh
+wget -O install.sh https://raw.githubusercontent.com/SIJULY/mfa/main/install.sh && chmod +x install.sh && sudo bash install.sh
 ```
 - **脚本将引导您完成以下步骤：**
 
