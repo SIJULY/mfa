@@ -60,3 +60,44 @@ sudo apt install -y git
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 
+
+
+Markdown
+
+## ▶️ 运行一键脚本
+现在，您可以运行一键脚本来完成 MFA 网页的部署了。
+
+```bash
+wget -O install.sh [https://raw.githubusercontent.com/SIJULY/sijuly-mfa/main/install.sh](https://raw.githubusercontent.com/SIJULY/sijuly-mfa/main/install.sh) && chmod +x install.sh && sudo bash install.sh
+脚本将引导您完成以下步骤：
+
+选择 安装 或 卸载。
+
+选择使用 域名 还是 IP 地址 进行访问。
+
+输入您的域名或确认 IP。
+
+输入一个映射到主机的端口（例如 8081）。
+
+脚本将自动完成所有后续操作！
+
+🔑 如何访问
+如果使用域名：脚本执行完毕后，直接访问 https://你的域名 即可。
+
+如果使用 IP：脚本执行完毕后，直接访问 http://你的服务器IP:你设置的端口 即可。
+
+🔧 使用方法
+部署完成后，有多种方式使用本工具：
+
+手动输入： 在页面的“你的秘钥”输入框中，直接粘贴您的 MFA 秘钥 (Secret Key)。
+
+通过 URL 哈希 (推荐)： 将您的秘钥直接附加在 URL 的 # 后面，浏览器不会将这部分发送到服务器，最安全。
+
+[https://mfa.example.com](https://mfa.example.com)#JBSWY3DPEHPK3PXP
+通过 URL 查询参数： 也可以通过 key 参数传入，同时可以自定义位数和周期。
+
+[https://mfa.example.com?key=JBSWY3DPEHPK3PXP&digits=6&period=30](https://mfa.example.com?key=JBSWY3DPEHPK3PXP&digits=6&period=30)
+您可以将构造好的 URL 直接保存为浏览器的书签，实现一键查看特定服务的动态验证码！
+
+📄 许可证
+本项目采用 MIT License 开源。
