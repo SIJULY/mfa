@@ -80,22 +80,10 @@ wget -O install.sh [https://raw.githubusercontent.com/SIJULY/sijuly-mfa/main/ins
 - **脚本将自动完成所有后续操作！**
 
 🔑 如何访问
-如果使用域名：脚本执行完毕后，直接访问 https://你的域名 即可。
+- **如果使用域名：脚本执行完毕后，直接访问 https://你的域名 即可。**
 
-如果使用 IP：脚本执行完毕后，直接访问 http://你的服务器IP:你设置的端口 即可。
+- **如果使用 IP：脚本执行完毕后，直接访问 http://你的服务器IP:你设置的端口 即可。**
 
-🔧 使用方法
-部署完成后，有多种方式使用本工具：
-
-手动输入： 在页面的“你的秘钥”输入框中，直接粘贴您的 MFA 秘钥 (Secret Key)。
-
-通过 URL 哈希 (推荐)： 将您的秘钥直接附加在 URL 的 # 后面，浏览器不会将这部分发送到服务器，最安全。
-
-[https://mfa.example.com](https://mfa.example.com)#JBSWY3DPEHPK3PXP
-通过 URL 查询参数： 也可以通过 key 参数传入，同时可以自定义位数和周期。
-
-[https://mfa.example.com?key=JBSWY3DPEHPK3PXP&digits=6&period=30](https://mfa.example.com?key=JBSWY3DPEHPK3PXP&digits=6&period=30)
-您可以将构造好的 URL 直接保存为浏览器的书签，实现一键查看特定服务的动态验证码！
 
 📄 许可证
 本项目采用 MIT License 开源。
