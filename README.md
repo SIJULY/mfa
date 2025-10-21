@@ -42,19 +42,28 @@ sudo sh get-docker.sh
 ```bash
 # 1. 安装 Caddy 所需的依赖
 sudo apt update && sudo apt install -y debian-keyring debian-archive-keyring apt-transport-https
+```
+```bash
 # 2. 导入 Caddy 的 GPG 密钥以验证软件包
 curl -1sLf '[https://dl.cloudsmith.io/public/caddy/stable/gpg.key](https://dl.cloudsmith.io/public/caddy/stable/gpg.key)' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+```
+```bash
 # 3. 添加 Caddy 的官方软件源
 curl -1sLf '[https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt](https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt)' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+```
+```bash
 # 4. 更新软件包列表并安装 Caddy
 sudo apt update && sudo apt install caddy
-
+```
+```bash
 # 更新软件包列表
 sudo apt update
-
+```
+```bash
 # 安装 git
 sudo apt install -y git
-
+```
+```bash
 # 安装 docker
 # (如果已安装请跳过)
 curl -fsSL https://get.docker.com -o get-docker.sh
