@@ -66,6 +66,7 @@ sudo sh get-docker.sh
 
 ```bash
 wget -O install.sh [https://raw.githubusercontent.com/SIJULY/sijuly-mfa/main/install.sh](https://raw.githubusercontent.com/SIJULY/sijuly-mfa/main/install.sh) && chmod +x install.sh && sudo bash install.sh
+```
 脚本将引导您完成以下步骤：
 
 选择 安装 或 卸载。
