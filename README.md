@@ -49,4 +49,4 @@ curl -1sLf '[https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt](https:
 # 4. 更新软件包列表并安装 Caddy
 sudo apt update && sudo apt install caddy
 
-##安装完成后，Caddy 将会自动作为系统服务在后台运行。
+安装完成后，Caddy 将会自动作为系统服务在后台运行。
