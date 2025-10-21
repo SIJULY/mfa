@@ -59,10 +59,7 @@ sudo apt install -y git
 # (如果已安装请跳过)
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
-
-
-
-Markdown
+```
 
 ## ▶️ 运行一键脚本
 现在，您可以运行一键脚本来完成 MFA 网页的部署了。
