@@ -9,6 +9,32 @@ CADDYFILE_PATH="/etc/caddy/Caddyfile"
 CONTAINER_PORT=8080 # 这是您 Dockerfile 中 Nginx 监听的端口
 # ------------------
 
+# --- Caddy 重载函数 ---
+reload_caddy() {
+    echo "==> 正在重新加载 Caddy 服务..."
+    # 尝试使用 systemctl 重载 (最常见的方式)
+    if command -v systemctl >/dev/null && systemctl is-active --quiet caddy; then
+        echo "通过 systemctl 重新加载 Caddy..."
+        sudo systemctl reload caddy
+    # 检查 caddy 命令是否存在
+    elif command -v caddy >/dev/null; then
+        echo "通过 'caddy reload' 命令重新加载..."
+        sudo caddy reload --config "$CADDYFILE_PATH"
+    # 如果两种方式都失败了
+    else
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        echo "!! 警告: 无法自动重新加载 Caddy。"
+        echo "!! 脚本无法找到正在运行的 Caddy 服务或 'caddy' 命令。"
+        echo "!! 请手动重新加载 Caddy 以使您的域名生效。"
+        echo "!! 您可以尝试以下命令之一："
+        echo "   sudo systemctl reload caddy"
+        echo "   sudo service caddy reload"
+        echo "   caddy reload --config $CADDYFILE_PATH"
+        echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    fi
+}
+
+
 # --- 卸载函数 ---
 uninstall_mfa() {
     echo ""
@@ -55,12 +81,7 @@ uninstall_mfa() {
                     echo "将从 Caddyfile 中删除第 $START_LINE 到 $END_LINE 行的配置..."
                     sudo sed -i "${START_LINE},${END_LINE}d" "$CADDYFILE_PATH"
                     echo "配置已移除。"
-                    echo "==> 5. 正在重新加载 Caddy 服务..."
-                    if [ -f "/etc/systemd/system/caddy.service" ]; then
-                        sudo systemctl reload caddy
-                    else
-                        sudo caddy reload --config "$CADDYFILE_PATH"
-                    fi
+                    reload_caddy
                 else
                     echo "!! 警告: 找到了域名 $DOMAIN_NAME，但无法自动移除配置块。请手动编辑 $CADDYFILE_PATH 文件。"
                 fi
@@ -161,12 +182,9 @@ install_mfa() {
             echo -e "$CADDY_SNIPPET" | sudo tee -a "$CADDYFILE_PATH" > /dev/null
             echo "配置已追加。"
         fi
-        echo "==> 6. 正在重新加载 Caddy 服务..."
-        if [ -f "/etc/systemd/system/caddy.service" ]; then
-            sudo systemctl reload caddy
-        else
-            sudo caddy reload --config "$CADDYFILE_PATH"
-        fi
+        
+        reload_caddy
+
         echo ""
         echo "============================================="
         echo " ✅ 部署完成！"
@@ -210,7 +228,7 @@ main_menu() {
 # 检查依赖
 command -v git >/dev/null 2>&1 || { echo "!! 错误: git 未安装。请先安装 git。"; exit 1; }
 command -v docker >/dev/null 2>&1 || { echo "!! 错误: docker 未安装。请先安装 docker。"; exit 1; }
-command -v caddy >/dev/null 2>&1 || { echo "!! 警告: 未找到 caddy 命令。脚本将假定 caddy 已作为 systemd 服务运行。"; }
+# 不再检查 caddy 命令，因为我们会在重载函数中处理
 echo "依赖检查通过。"
 
 main_menu
